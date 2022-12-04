@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../reset.css">
-    <title>iframe内検知不可ページ</title>
+    <title>iframe内検知可能ページ</title>
 </head>
 <body>
-    <h2>iframe内検知不可ページ</h2>
+    <h2>iframe内検知可能ページ</h2>
     <div class="pageWrapper">
         <iframe src="https://manzoku-bukuro.github.io/qiita/iframe-detect/iframe.html"></iframe>
     </div>
@@ -19,7 +19,16 @@
         window.addEventListener("DOMContentLoaded", () => {
             const iframeElement = document.querySelector("iframe");
             iframeElement.contentWindow.document.addEventListener("click", () => {
-                alert("clickを検知しました");
+                console.log('テスト1');
+                alert("clickを検知しました1");
+            })
+            iframeElement.contentWindow.window.addEventListener("click", () => {
+                console.log('テスト2');
+                alert("clickを検知しました2");
+            })
+            iframeElement.contentWindow.addEventListener("click", () => {
+                console.log('テスト3');
+                alert("clickを検知しました3");
             })
         })
     </script>
