@@ -18,8 +18,6 @@
         })
         window.addEventListener("DOMContentLoaded", () => {
             const iframeElement = document.querySelector("iframe");
-            console.log('テストa',iframeElement.contentWindow.document)
-            console.log('テストb',iframeElement.contentWindow)
             iframeElement.contentWindow.addEventListener("click", () => {
                 alert("clickを検知しました");
             })
