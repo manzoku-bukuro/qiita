@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../reset.css">
+    <title>iframeエリア</title>
+</head>
+<body>
+    <body>
+        <h2>iframeエリア</h2>
+        <div class="button-area">
+            <button onclick="leftClick()">左ボタン</button>
+            <button onclick="rightClick()">右ボタン</button>
+            <button onclick="originRestricted()">オリジン制限ボタン</button>
+        </div>
+        <script>
+            let leftCount = 0;
+            const leftClick = () => {
+                const message = {
+                    type: "click",
+                    data: {
+                        name: "right",
+                        count: rightCount,
+                    }
+                }
+                window.parent.postMessage(message, "*");
+                leftCount++;
+            }
+
+            let rightCount = 0;
+            const rightClick = () => {
+                const message = {
+                    type: "click",
+                    data: {
+                        name: "right",
+                        count: rightCount,
+                    }
+                }
+                window.parent.postMessage(message, "*");
+                rightCount++;
+            }
+
+            const originRestricted = () => {
+                const message = {
+                    type: "click",
+                    data: {
+                        name: "restricted",
+                    }
+                }
+                window.parent.postMessage(message, "https://manzoku-bukuro.github.io");
+            }
+        </script>
+        <style>
+            html, body {
+                min-height: 100%;
+                height: 100%;
+                background-color: rgb(154, 205, 205);
+            }
+            h2 {
+                margin: 0;
+                height: 28px;
+            }
+            .button-area {
+                margin: 12px;
+            }
+        </style>
+    </body>
+</body>
+</html>
