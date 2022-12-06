@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../reset.css">
-    <title>iframe内検知不可ページ</title>
+    <title>親ページ</title>
 </head>
+
 <body>
     <h2>親ページ</h2>
     <div class="pageWrapper">
+        <div class="button-area">
+            <span class="red" onclick="postColor('red')"></span>
+            <span class="blue" onclick="postColor('blue')"></span>
+            <span class="yellow" onclick="postColor('yellow')"></span>
+        </div>
+
         <iframe src="./iframe.html"></iframe>
+
+        <div class="number-area">
+            <span>
+                左: <span id="left-number"></span>
+            </span>
+            <span>
+                右: <span id="right-number"></span>
+            </span>
+        </div>
     </div>
     <script>
         window.addEventListener("message", (response) => {
-            console.log('テスト', response)
+            if (response.data.type === "click") {
+                const data = response.data.data;
+                if (data.name === "left") {
+                    const leftNumberElement = document.querySelector("#left-number");
+                    leftNumberElement.innerHTML = data.count;
+                } else if (data.name === "right") {
+                    const rightNumberElement = document.querySelector("#right-number");
+                    rightNumberElement.innerHTML = data.count;
+                }
+            }
         })
+
+        const postColor = (color) => {
+            const iframeElement = document.querySelector("iframe");
+            const message = {
+                type: "color",
+                data: {
+                    color: color,
+                }
+            }
+            iframeElement.contentWindow.postMessage(message, "*");
+        }
     </script>
     <style>
-        html, body {
+        html,
+        body {
             min-height: 100%;
             height: 100%;
             background-color: #ccc;
         }
+
         .pageWrapper {
             height: calc(100% - 28px);
             min-width: 100%;
-            display: grid;
-            place-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
+
         h2 {
             margin: 0;
             height: 28px;
         }
+
         iframe {
             max-height: 500px;
             max-width: 300px;
@@ -40,6 +83,31 @@
             height: 80%;
             margin: 20px;
         }
+
+        .red, .blue, .yellow {
+            display: inline-block;
+            height: 80px;
+            width: 80px;
+        }
+        .red {
+            background: red;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .number-area {
+            width: 160px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 24px;
+        }
     </style>
 </body>
+
 </html>

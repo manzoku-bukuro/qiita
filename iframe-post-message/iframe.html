@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="../reset.css">
     <title>iframeエリア</title>
 </head>
+
 <body>
+
     <body>
         <h2>iframeエリア</h2>
         <div class="button-area">
@@ -15,14 +18,16 @@
             <button onclick="rightClick()">右ボタン</button>
             <button onclick="originRestricted()">オリジン制限ボタン</button>
         </div>
+        <div class="message-area">
+        </div>
         <script>
             let leftCount = 0;
             const leftClick = () => {
                 const message = {
                     type: "click",
                     data: {
-                        name: "right",
-                        count: rightCount,
+                        name: "left",
+                        count: leftCount,
                     }
                 }
                 window.parent.postMessage(message, "*");
@@ -49,23 +54,62 @@
                         name: "restricted",
                     }
                 }
-                window.parent.postMessage(message, "https://manzoku-bukuro.github.io");
+                window.parent.postMessage(message, "https://sample.jp");
             }
+            window.addEventListener("message", (response) => {
+                if (response.data.type === "color") {
+                    const messageAreaElement = document.querySelector(".message-area");
+                    const createDivElement = document.createElement("div");
+                    const color = response.data.data.color;
+                    if (color === "red") {
+                        createDivElement.className = "red";
+                    } else if (color === "blue") {
+                        createDivElement.className = "blue";
+                    } else if (color === "yellow") {
+                        createDivElement.className = "yellow";
+                    }
+                    messageAreaElement.appendChild(createDivElement);
+                }
+            })
         </script>
         <style>
-            html, body {
+            html,
+            body {
                 min-height: 100%;
                 height: 100%;
                 background-color: rgb(154, 205, 205);
             }
+
             h2 {
                 margin: 0;
                 height: 28px;
             }
+
             .button-area {
                 margin: 12px;
+            }
+
+            .red,
+            .blue,
+            .yellow {
+                display: inline-block;
+                height: 80px;
+                width: 80px;
+            }
+
+            .red {
+                background: red;
+            }
+
+            .blue {
+                background: blue;
+            }
+
+            .yellow {
+                background: yellow;
             }
         </style>
     </body>
 </body>
+
 </html>
