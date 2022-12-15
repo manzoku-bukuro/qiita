@@ -16,8 +16,19 @@
         <button onclick="openFullscreen()">オープン</button>
         <script>
             const openFullscreen = () => {
-                document.documentElement.requestFullscreen();
-                console.log('テストa', document.documentElement.requestFullscreen)
+                const requestFullscreens = [
+                    "requestFullscreen",
+                    "webkitRequestFullScreen",
+                    "mozRequestFullScreen",
+                    "msRequestFullscreen",
+                ];
+
+                for (let i = 0; i < requestFullscreens.length; i++) {
+                    if (document.documentElement[requestFullscreens[i]]) {
+                        document.documentElement[requestFullscreens[i]]();
+                        break;
+                    }
+                }
             }
         </script>
         <style>
