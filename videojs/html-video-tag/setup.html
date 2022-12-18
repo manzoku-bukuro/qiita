@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../reset.css">
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <title>html-video-tag</title>
+</head>
+
+<body>
+    <div class="aaaaa" data-vjs-player>
+        <video id="video1" class="video-js" controls data-setup='{}'>
+            <source src="../sample.mp4">
+        </video>
+        <!-- <div class="bbbbb" data-vjs-player>
+            <video id="vid1" class="video-js" controls data-setup='{}'>
+                <source src="../sample.mp4">
+            </video>
+        </div> -->
+        <!-- <video-js id="vid1" data-setup='{}'>
+            <source src="../sample.mp4">
+        </video-js> -->
+    </div>
+
+    <script>
+        videojs('vid1', {});
+    </script>
+</body>
+<style>
+    video {
+        width: 100%;
+    }
+</style>
+
+</html>
