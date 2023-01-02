@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../reset.css">
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <title>Standard</title>
+</head>
+
+<body>
+    <video src="https://vjs.zencdn.net/v/oceans.mp4" id="video1" class="video-js" autoplay controls height=200
+        width="400px" loop=true muted poster="./sample.jpg" preload="none" data-setup='{}'>
+    </video>
+
+    <script>
+        const autoplay = () => {
+            videojs('video1', {
+                'autoplay': 'play',
+            });
+        }
+        const remainingTimeDisplay = () => {
+            videojs('video1', {
+                'controlBar': {
+                    'remainingTimeDisplay': {
+                        'displayNegative': false
+                    }
+                },
+            });
+        }
+        const controls = () => {
+            const video = videojs('video1', {
+                'controls': true,
+            });
+        }
+        const setHeight = () => {
+            const video = videojs('video1', {
+                'height': 100
+            });
+        }
+        const setLoop = () => {
+            videojs('video1', {
+                'loop': true,
+            });
+        }
+        const setMuted = () => {
+            videojs('video1', {
+                'muted': true,
+            });
+        }
+        const setPoster = () => {
+            videojs('video1', {
+                'poster': './mens-shirt.png'
+            });
+        }
+        const setPreload = () => {
+            videojs('video1', {
+                'preload': 'none'
+            });
+        }
+    </script>
+</body>
+<style>
+    video {
+        width: 100%;
+    }
+</style>
+
+</html>
