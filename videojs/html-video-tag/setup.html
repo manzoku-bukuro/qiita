@@ -27,7 +27,38 @@
     </div>
 
     <script>
-        videojs('vid1', {});
+        videojs('video1', {});
+        // データ参照
+        const getDataWithVideojs = () => {
+            const video = videojs('video1', {});
+            console.log(video);
+        }
+        const getDataWithGetPlayer = () => {
+            const video = videojs.getPlayer('video1');
+            console.log(video);
+        }
+        const getDataWithGetPlayers = () => {
+            const videos = videojs.getPlayers();
+            console.log(videos['video1']);
+        }
+        // 初期化を検知する
+        const detectWithVideojs = () => {
+            videojs('my-player', null, () => {
+                // Player生成後に実行したい処理
+            });
+        }
+        const detectWithReady = () => {
+            const player = videojs('my-player');
+            player.ready(() => {
+                // Player生成後に実行したい処理
+            });
+        }
+        const detectWithOnReady = () => {
+            const player = videojs('my-player');
+            player.on('ready', () => {
+                // Player生成後に実行したい処理
+            });
+        }
     </script>
 </body>
 <style>
