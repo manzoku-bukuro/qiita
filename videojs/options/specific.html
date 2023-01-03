@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../reset.css">
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <title>specific</title>
+</head>
+
+<body>
+    <video id="video1" class="video-js" controls autoplay muted>
+        <source src="https://vjs.zencdn.net/v/oceans.mp4" >
+    </video>
+
+    <script>
+        const remainingTimeDisplay = () => {
+            videojs('video1', {
+                'controlBar': {
+                    'remainingTimeDisplay': {
+                        'displayNegative': false
+                    }
+                },
+            });
+        }
+        const setAspectRatio = () => {
+            videojs('video1', {
+                'aspectRatio': '1:1',
+                'height': '300px',
+                'width': '500px',
+            });
+        }
+        const setAudioOnlyMode = () => {
+            videojs('video1', {
+                'audioOnlyMode': true,
+                'width': '500px'
+            });
+        }
+        const setAudioPosterMode = () => {
+            videojs('video1', {
+                'poster': './poster.png',
+                'audioPosterMode': true,
+            });
+        }
+        const setAutoSetup = () => {
+            videojs('video1', {
+                'autoSetup': false,
+            });
+        }
+        const setFluid = () => {
+            videojs('video1', {
+                'fluid': true,
+            });
+        }
+        const setFullscreen = () => {
+            videojs('video1', {
+                'fullscreen': { 'navigationUI': 'show' },
+            });
+        }
+        const setId = () => {
+            const videoDom = document.querySelector('.video1');
+            videojs(videoDom, {
+                'id': 'aaaaa'
+            })
+        }
+        const setInactivityTimeout = () => {
+            videojs('video1', {
+                'inactivityTimeout': 5000,
+            });
+        }
+        const setLanguage = () => {
+            videojs('video1', {
+                language: 'ja',
+                languages: {
+                    ja: {
+                        Play: '再生!'
+                    }
+                }
+            });
+        }
+        const setLiveui = () => {
+            videojs('video1', {
+                'liveui': true,
+            });
+        }
+        const setNativeControls = () => {
+            videojs.options.nativeControlsForTouch = true
+            videojs.options.normalizeAutoplay = false
+            videojs('video1', {
+                'nativeControlsForTouch': true,
+                'normalizeAutoplay': false,
+            });
+        }
+        const setNotSupportedMessage = () => {
+            videojs('video1', {
+                'notSupportedMessage': '再生出来ません！！！',
+            });
+        }
+        const setNoUITitleAttributes = () => {
+            videojs('video1', {
+                'noUITitleAttributes': true,
+            });
+        }
+        const setPlaybackRates = () => {
+            videojs('video1', {
+                'playbackRates': [0.5, 1, 1.5, 2],
+            });
+        }
+        const setPlugins = () => {
+            const player = videojs('video1', {
+                'plugins': {
+                    'foo': 1
+                },
+            });
+        }
+        const setPreferFullWindow = () => {
+            const player = videojs('video1', {
+                'preferFullWindow': true,
+            });
+        }
+        
+        setPreferFullWindow()
+    </script>
+</body>
+<style>
+    .parent {
+        width: 300px;
+        height: 300px;
+    }
+</style>
+
+</html>
