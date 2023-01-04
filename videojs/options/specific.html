@@ -13,7 +13,7 @@
 
 <body>
     <video id="video1" class="video-js" controls autoplay muted>
-        <source src="https://vjs.zencdn.net/v/oceans.mp4" >
+        <source src="https://vjs.zencdn.net/v/oceans.mp4">
     </video>
 
     <script>
@@ -117,12 +117,72 @@
             });
         }
         const setPreferFullWindow = () => {
-            const player = videojs('video1', {
-                'preferFullWindow': false,
+            videojs('video1', {
+                'preferFullWindow': true,
             });
         }
-        
-        setPreferFullWindow()
+        const setRestoreEl = () => {
+            const restoreDom = document.createTextNode("このPlayerは破棄されました");
+            const player = videojs('video1', {
+                'restoreEl': restoreDom,
+            });
+            setTimeout(() => {
+                player.dispose();
+            }, 5000);
+        }
+        const setSources = () => {
+            videojs('video1', {
+                'sources': [
+                    {
+                        'src': '//path/to/video.mp4',
+                        'type': 'video/mp4'
+                    },
+                    {
+                        'src': '//path/to/video.webm',
+                        'type': 'video/webm'
+                    }
+                ]
+            });
+        }
+        const setSuppressNotSupportedError = () => {
+            videojs('video1', {
+                'suppressNotSupportedError': true,
+            });
+        }
+        const setTechOrder = () => {
+            videojs('video1', {
+                'techOrder': ['hls', 'html5', 'flash', 'youtube']
+            });
+        }
+        const setUserActions = () => {
+const video = videojs('video1', {
+    'userActions': {
+        'click': () => {
+            // 動画上をクリックした際に実行したい挙動
+        },
+        'doubleClick': () => {
+            // 動画上をダブルクリックした際に実行したい挙動
+        },
+        // 'hotkeys': (e) => {
+        //     // `x` key = pause
+        //     if (event.which === 88) {
+        //         video.pause();
+        //     }
+        //     // `y` key = play
+        //     if (event.which === 89) {
+        //         video.play();
+        //     }
+        // },
+        // 'hotkeys': {
+        //     fullscreenKey: function(e) {
+        //         console.log('テスト',e.which)
+        //     }
+        // }
+    }
+});
+        }
+
+        setUserActions()
     </script>
 </body>
 <style>
