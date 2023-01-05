@@ -155,31 +155,26 @@
             });
         }
         const setUserActions = () => {
-const video = videojs('video1', {
-    'userActions': {
-        'click': () => {
-            // 動画上をクリックした際に実行したい挙動
-        },
-        'doubleClick': () => {
-            // 動画上をダブルクリックした際に実行したい挙動
-        },
-        // 'hotkeys': (e) => {
-        //     // `x` key = pause
-        //     if (event.which === 88) {
-        //         video.pause();
-        //     }
-        //     // `y` key = play
-        //     if (event.which === 89) {
-        //         video.play();
-        //     }
-        // },
-        // 'hotkeys': {
-        //     fullscreenKey: function(e) {
-        //         console.log('テスト',e.which)
-        //     }
-        // }
-    }
-});
+        const video = videojs('video1', {
+            'userActions': {
+                'click': () => {
+                    // 動画上をクリックした際に実行したい挙動
+                },
+                'doubleClick': () => {
+                    // 動画上をダブルクリックした際に実行したい挙動
+                },
+                'hotkeys': (e) => {
+                    // `x` key = pause
+                    if (event.which === 88) {
+                        video.pause();
+                    }
+                    // `y` key = play
+                    if (event.which === 89) {
+                        video.play();
+                    }
+                },
+            }
+        });
         }
 
         setUserActions()
